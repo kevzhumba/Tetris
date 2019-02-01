@@ -1,0 +1,97 @@
+VERY TENTATIVE SCHEDULE
+
+END GOAL: Tetris Game
+
+Sprint 1
+========
+- Internal Game State
+  -> the entire board (array)
+  -> the position of the current piece
+  -> methods:
+      - moveLeft
+      - moveRight
+      - next
+       -> moveDown
+       -> lock
+       -> clear
+       -> generateNew
+- Display Game State
+  -> print out in the console
+- Take Input (DONE?)
+
+- Basic Game Features
+  -> Piece Generation
+  -> Piece Falling
+  -> Move Piece Left / Right
+  -> Piece Lock
+  -> Line Clears
+  -> Rotate??
+
+- read and write files
+
+Sprint 2
+========
+- Hold Piece
+- Hard & Soft Drop
+- Next Piece
+- Super Rotation
+- Color
+- Scoring System
+
+Sprint 3
+========
+- Loose Ends (DONE)
+  - Print Things
+  - Fix Scoring
+- Multiplayer (State)
+  - 40 Lines
+  - Separate Print state that takes in 2 states
+  - Ability to send junk
+    - new field (queue) in state (DONE)
+    - lock: push this.queue (with gaps) to gameboard, empty the queue (DONE)
+    - clear: deduct lines from this.queue (DONE)
+    - function to send this.queue to the opponent's queue (new module???)
+- Multiplayer (Main)
+  - New key bindings
+- AI 
+  - Separate Module
+    - Take in current board, next piece, hold piece, 
+      compute which piece to lock in and where
+    - Returns whether or not it held or locked a piece
+    - Potential refactor of Rotation
+  - Things AI Needs to do (DONE)
+    - Compute every possible drop position (rotate and move)
+    - Compute score:
+      - Height
+      - Clears
+      - Holes
+      - Blockades
+    - Relay information back
+
+
+
+TODO for this week:
+
+Michael: Main, Multiplayer
+
+Kevin: Print State
+
+Lucy: AI, UI
+
+Aashna: AI, compute_score
+
+AI Workflow:
+State has method such as "compute_next_ai_move" or whatever
+That method first passes state to compute_pos inside AI.mli
+Once that returns, the method in state then turns the game board into a 
+  bool array array
+Next, recurse through the list compute_pos returns
+For each item, merge the resulting position of the piece with the board into
+  a new bool array array before passing that to compute_score in AI.mli
+Find the max
+Move the piece there and pipeline into next
+Return the st, int tuple.
+
+
+REMAINING TODO:
+- Scoreboard Print Names
